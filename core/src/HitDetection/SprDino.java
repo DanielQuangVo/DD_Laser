@@ -13,7 +13,7 @@ public class SprDino extends Sprite {
     boolean bJump, bGrav, bGoThrough, bPlatformCarry, bMove;
     float fGround;
 
-    SprDino(Texture _txDino, Texture _txDeadDino) {
+    public SprDino(Texture _txDino, Texture _txDeadDino) {
         txDino = _txDino;
         txDeadDino = _txDeadDino;
         sprDino = new Sprite(txDino);

@@ -9,8 +9,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import java.util.Iterator;
+import java.awt.geom.Line2D;
 
 public class ScrPlatform implements Screen, InputProcessor {
 
@@ -19,9 +21,11 @@ public class ScrPlatform implements Screen, InputProcessor {
     Texture txDeadDino, txDino, txPlat;
     SprDino sprDino;
     SprPlatform sprPlatform;
+    LineLaser lineLaser;
     private Array<SprPlatform> arsprPlatform;
     int nHitType, HitPlatform;
-
+    Vector2 vMouse;
+    
     public ScrPlatform(Game _game) {
         nHitType = 0;
         HitPlatform = 0;
@@ -30,9 +34,11 @@ public class ScrPlatform implements Screen, InputProcessor {
         txDino = new Texture("Dinosaur.png");
         txDeadDino = new Texture("dead.png");
         txPlat = new Texture("Platform.png");
+        vMouse = new Vector2(Gdx.input.getX(), Gdx.input.getY());
         Gdx.input.setInputProcessor((this));
         Gdx.graphics.setDisplayMode(600, 400, false);
         sprDino = new SprDino(txDino, txDeadDino);
+        lineLaser = new LineLaser(sprDino.vPos,vMouse);
         sprPlatform = new SprPlatform(txPlat);
         arsprPlatform = new Array<SprPlatform>();
         arsprPlatform.add(sprPlatform);
